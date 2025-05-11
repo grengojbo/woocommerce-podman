@@ -1,0 +1,7 @@
+[Unit]
+Description=WordPress Cron Service
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/podman exec wordpress-pod-wordpress /usr/local/bin/wp cron event run --due-now --allow-root --path=/var/www/html

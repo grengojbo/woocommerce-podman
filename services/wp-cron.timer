@@ -1,0 +1,10 @@
+[Unit]
+Description=Запуск WordPress Cron кожні 5 хвилин
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=5min
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target
