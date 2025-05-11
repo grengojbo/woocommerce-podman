@@ -39,17 +39,10 @@ jobs:
 
     - name: Build Docker image
       uses: docker/build-push-action@v2
+      id: build
       with:
         context: .
         file: .docker/.Dockerfile
-        push: false
-        tags: |
-          ${{ secrets.DOCKERHUB_USERNAME }}/woocommerce-podman:${{ github.ref_name }}
-
-    - name: Push Docker image to DockerHub
-      uses: docker/build-push-action@v2
-      with:
-        context: .
         push: true
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/woocommerce-podman:${{ github.ref_name }}
@@ -63,6 +56,8 @@ jobs:
         tags: |
           ghcr.io/${{ github.repository_owner }}/woocommerce-podman:${{ github.ref_name }}
           ghcr.io/${{ github.repository_owner }}/woocommerce-podman:latest
+        cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/woocommerce-podman:${{ github.ref_name }}
+        # cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/woocommerce-podman:${{ github.ref_name }}
 
     - name: Create GitHub Release
       uses: actions/create-release@v1
