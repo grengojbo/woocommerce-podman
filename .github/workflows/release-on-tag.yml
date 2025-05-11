@@ -53,9 +53,19 @@ jobs:
           Release tag: ${{ github.ref_name }}
           
           DockerHub:
-          - docker pull docker.io/${{ secrets.DOCKERHUB_USERNAME }}/woocommerce-podman:${{ github.ref_name }}
-          - docker pull docker.io/${{ secrets.DOCKERHUB_USERNAME }}/woocommerce-podman:latest
+          ```
+          podman pull docker.io/${{ secrets.DOCKERHUB_USERNAME }}/woocommerce-podman:${{ github.ref_name }}
+          ```
           
+          ```
+          podman pull docker.io/${{ secrets.DOCKERHUB_USERNAME }}/woocommerce-podman:latest
+          ```
+
           GitHub Container Registry:
-          - docker pull ghcr.io/${{ github.repository_owner }}/woocommerce-podman:${{ github.ref_name }}
-          - docker pull ghcr.io/${{ github.repository_owner }}/woocommerce-podman:latest
+          ```
+          podman pull ghcr.io/${{ github.repository_owner }}/woocommerce-podman:${{ github.ref_name }}
+          ```
+          
+          ```
+          podman pull ghcr.io/${{ github.repository_owner }}/woocommerce-podman:latest
+          ```
