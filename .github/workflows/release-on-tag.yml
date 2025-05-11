@@ -52,6 +52,7 @@ jobs:
         release_name: Release ${{ github.ref_name }}
         body: |
           Docker images are available (latest tag is always the same as the tag of the release)
+          Release tag: ${{ github.ref_name }}
           
           DockerHub:
           - docker pull docker.io/${{ secrets.DOCKERHUB_USERNAME }}/woocommerce-podman:${{ github.ref_name }}
